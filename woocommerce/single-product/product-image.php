@@ -11,14 +11,20 @@
  * the readme will list any important changes.
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
- * @author  WooThemes
- * @package WooCommerce/Templates
- * @version 3.1.0
+ * @package WooCommerce\Templates
+ * @version 3.5.1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+
+// Note: `wc_get_gallery_image_html` was added in WC 3.3.2 and did not exist prior. This check protects against theme overrides being used on older versions of WC.
+if ( ! function_exists( 'wc_get_gallery_image_html' ) ) {
+	return;
+}
+
 
 global $post, $product;
 $columns           = apply_filters( 'woocommerce_product_thumbnails_columns', 4 );
